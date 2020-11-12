@@ -148,6 +148,10 @@ public class TemperatureSeriesAnalysis {
 
 
     public double[] findTempsGreaterThen(double tempValue) {
+        /*
+        A method used to return Array with temperatures with greater
+        value than tempValue.
+         */
         checkIsEmpty();
 
         int size = 0;
@@ -172,30 +176,67 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() {
+        /*
+        A method used to return immutable TempSummaryStatistics
+        object with following information:
+        average temp;
+        deviation of temp;
+        min temp;
+        max temp;
+         */
         checkIsEmpty();
-        return new TempSummaryStatistics();
+
+        return new TempSummaryStatistics(
+                average(),
+                deviation(),
+                min(),
+                max()
+        );
     }
 
     public int addTemps(double... temps) {
-        return 0;
+        /*
+        A method used to add new values to the temperatureSeries.
+        If there is not any place in array - make it two times
+        bigger.
+         */
+        checkTempsValues(temps);
+
+        int newSize = tempSeries.length;
+        while (newSize < (tempsSize + temps.length)) newSize *= 2;
+
+        double[] newTemperatures = new double[newSize];
+
+        // reformat old array
+        System.arraycopy(
+                tempSeries,0,
+                newTemperatures,0,
+                tempSeries.length
+        );
+
+        tempSeries = newTemperatures;
+        //copying new array to old
+
+        System.arraycopy(temps,0, tempSeries,tempsSize, temps.length);
+
+        tempsSize += temps.length;
+        return tempsSize;
     }
 
     private void checkIsEmpty() {
+        /*
+        A method used to check whether temperature series is empty.
+         */
         if (tempsSize == 0) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean adaptTempsSize(int addSize) {
-        int newSize = tempSeries.length;
-        while (newSize < (tempsSize + addSize)) newSize *= 2;
-        // create new array
-        double[] newTemperatures = new double[newSize];
-        //copying old array to new one
-        return false;
-    }
-
     private void checkTempsValues(double[] temps) {
+        /*
+        A method used to check whether whether all values in
+        temps are greater than -273.0.
+         */
         for (double temp: temps) {
             if (temp < MINIMUM_TEMP_VALUE) {
                 throw new InputMismatchException();
