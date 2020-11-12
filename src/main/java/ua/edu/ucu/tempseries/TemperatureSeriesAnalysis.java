@@ -11,7 +11,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double average() {
-        return -1;
+        return 0;
     }
 
     public double deviation() {
