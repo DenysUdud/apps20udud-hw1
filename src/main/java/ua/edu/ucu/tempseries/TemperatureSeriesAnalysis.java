@@ -10,11 +10,8 @@ public class TemperatureSeriesAnalysis {
     private double[] tempSeries;
     private int tempsSize;
 
-    private final double MINIMUM_TEMP_VALUE = -273.0;
-    private final int DEFAULT_TEMPS_CAPACITY = 2;
-
     public TemperatureSeriesAnalysis() {
-        tempSeries = new double[DEFAULT_TEMPS_CAPACITY];
+        tempSeries = new double[2];
         tempsSize = 0;
     }
 
@@ -250,6 +247,7 @@ public class TemperatureSeriesAnalysis {
         temps are greater than -273.0.
          */
         for (double temp: temps) {
+            double MINIMUM_TEMP_VALUE = -273.0;
             if (temp < MINIMUM_TEMP_VALUE) {
                 throw new InputMismatchException();
             }
