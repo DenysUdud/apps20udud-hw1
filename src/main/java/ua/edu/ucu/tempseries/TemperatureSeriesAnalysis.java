@@ -247,8 +247,8 @@ public class TemperatureSeriesAnalysis {
         temps are greater than -273.0.
          */
         for (double temp: temps) {
-            double MINIMUM_TEMP_VALUE = -273.0;
-            if (temp < MINIMUM_TEMP_VALUE) {
+            double min_temp = -273.0;
+            if (temp < min_temp) {
                 throw new InputMismatchException();
             }
         }
