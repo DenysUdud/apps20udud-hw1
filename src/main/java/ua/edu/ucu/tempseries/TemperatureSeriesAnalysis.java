@@ -10,8 +10,8 @@ public class TemperatureSeriesAnalysis {
     private double[] tempSeries;
     private int tempsSize;
 
-    private static final double MINIMUM_TEMP_VALUE = -273.0;
-    private static final int DEFAULT_TEMPS_CAPACITY = 2;
+    static private final double MINIMUM_TEMP_VALUE = -273.0;
+    static private final int DEFAULT_TEMPS_CAPACITY = 2;
 
     public TemperatureSeriesAnalysis() {
         tempSeries = new double[DEFAULT_TEMPS_CAPACITY];
@@ -25,7 +25,13 @@ public class TemperatureSeriesAnalysis {
         tempsSize = temperatureSeries.length;
 
         //copying array to new one
-        System.arraycopy(temperatureSeries,0, tempSeries,0, temperatureSeries.length);
+        System.arraycopy(
+                temperatureSeries,
+                0,
+                tempSeries,
+                0,
+                temperatureSeries.length
+        );
 
     }
 
@@ -49,9 +55,9 @@ public class TemperatureSeriesAnalysis {
         checkIsEmpty();
         double averageTemp = average(), quadraticSum = 0;
 
-        for (int i=0; i < tempsSize; i++) {
+        for (int i = 0; i < tempsSize; i++) {
             double diff = tempSeries[i] - averageTemp;
-            quadraticSum += Math.pow(diff, 2);
+            quadraticSum += diff*diff;
         }
         return Math.sqrt(quadraticSum / tempSeries.length);
     }
@@ -77,7 +83,7 @@ public class TemperatureSeriesAnalysis {
 
         double maximum = tempSeries[0];
 
-        for (int i=1; i < tempsSize; i++) {
+        for (int i = 1; i < tempsSize; i++) {
             maximum = Math.max(maximum, tempSeries[i]);
         }
         return maximum;
@@ -106,7 +112,7 @@ public class TemperatureSeriesAnalysis {
         double closest = tempSeries[0];
         double minDiff = Math.abs(closest - tempValue);
 
-        for (int i=1; i < tempsSize; i++) {
+        for (int i = 1; i < tempsSize; i++) {
             double newDiff = Math.abs(tempSeries[i] - tempValue);
             if (newDiff < minDiff) {
                 closest = tempSeries[i];
@@ -202,7 +208,9 @@ public class TemperatureSeriesAnalysis {
         checkTempsValues(temps);
 
         int newSize = tempSeries.length;
-        while (newSize < (tempsSize + temps.length)) newSize *= 2;
+        while (newSize < (tempsSize + temps.length)) {
+            newSize *= 2;
+        }
 
         double[] newTemperatures = new double[newSize];
 
@@ -216,7 +224,12 @@ public class TemperatureSeriesAnalysis {
         tempSeries = newTemperatures;
         //copying new array to old
 
-        System.arraycopy(temps,0, tempSeries,tempsSize, temps.length);
+        System.arraycopy(
+                temps, 0,
+                tempSeries,
+                tempsSize,
+                temps.length
+        );
 
         tempsSize += temps.length;
         return tempsSize;
