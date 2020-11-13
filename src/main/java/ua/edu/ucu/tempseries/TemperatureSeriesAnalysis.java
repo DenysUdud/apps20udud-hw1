@@ -10,8 +10,8 @@ public class TemperatureSeriesAnalysis {
     private double[] tempSeries;
     private int tempsSize;
 
-    private static final double MINIMUM_TEMP_VALUE = -273.0;
-    private static final int DEFAULT_TEMPS_CAPACITY = 2;
+    private final double MINIMUM_TEMP_VALUE = -273.0;
+    private final int DEFAULT_TEMPS_CAPACITY = 2;
 
     public TemperatureSeriesAnalysis() {
         tempSeries = new double[DEFAULT_TEMPS_CAPACITY];
