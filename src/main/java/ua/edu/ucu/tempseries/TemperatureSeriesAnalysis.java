@@ -20,16 +20,6 @@ public class TemperatureSeriesAnalysis {
 
         tempSeries = new double[temperatureSeries.length * 2];
         tempsSize = temperatureSeries.length;
-
-        //copying array to new one
-        System.arraycopy(
-                temperatureSeries,
-                0,
-                tempSeries,
-                0,
-                temperatureSeries.length
-        );
-
     }
 
     public double average() {
@@ -115,7 +105,8 @@ public class TemperatureSeriesAnalysis {
                 closest = tempSeries[i];
                 minDiff = newDiff;
             }
-            else if (minDiff == newDiff) {
+            // there changed because of bag
+            else if (Math.abs(newDiff - minDiff) < .0000001) {
                 closest = Math.max(tempSeries[i], closest);
             }
         }
@@ -247,10 +238,18 @@ public class TemperatureSeriesAnalysis {
         temps are greater than -273.0.
          */
         for (double temp: temps) {
-            final double minTempValue = -273.0;
-            if (temp < minTempValue) {
+            final double minTemp = -273.0;
+            if (temp < minTemp) {
                 throw new InputMismatchException();
             }
         }
+    }
+
+    public double[] getTempSeries() {
+        return tempSeries;
+    }
+
+    public int getTempsSize() {
+        return tempsSize;
     }
 }
