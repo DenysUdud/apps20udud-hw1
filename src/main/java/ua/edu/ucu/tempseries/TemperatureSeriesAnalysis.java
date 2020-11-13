@@ -146,7 +146,6 @@ public class TemperatureSeriesAnalysis {
         return smallerTemperatures;
     }
 
-
     public double[] findTempsGreaterThen(double tempValue) {
         /*
         A method used to return Array with temperatures with greater
