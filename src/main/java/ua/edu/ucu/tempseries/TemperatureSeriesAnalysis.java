@@ -257,11 +257,11 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] getTempSeries() {
-        double[] newArr = new double[tempsSize];
+        double[] newArr = new double[tempSeries.length];
         System.arraycopy(
                 tempSeries,
                 0, newArr,
-                0, tempsSize
+                0, tempSeries.length
         );
         return newArr;
     }
