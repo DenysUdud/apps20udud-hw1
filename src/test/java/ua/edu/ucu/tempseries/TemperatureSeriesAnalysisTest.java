@@ -83,9 +83,9 @@ public class TemperatureSeriesAnalysisTest {
 
         assertEquals(expResult, actualResult, 0.00001);
 
-        double[] temperatureSeries1 = {11.27, 11.36, 11.09, 11.16, 11.47};
+        double[] temperatureSeries1 = {600, 470, 170, 430, 300};
         seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries1);
-        expResult = 0.13608;
+        expResult = 147.32277488562318;
         actualResult = seriesAnalysis.deviation();
 
         assertEquals(expResult, actualResult, 0.00001);

@@ -20,6 +20,15 @@ public class TemperatureSeriesAnalysis {
 
         tempSeries = new double[temperatureSeries.length * 2];
         tempsSize = temperatureSeries.length;
+
+        //copying array to new one
+        System.arraycopy(
+                temperatureSeries,
+                0,
+                tempSeries,
+                0,
+                temperatureSeries.length
+        );
     }
 
     public double average() {
@@ -44,9 +53,9 @@ public class TemperatureSeriesAnalysis {
 
         for (int i = 0; i < tempsSize; i++) {
             double diff = tempSeries[i] - averageTemp;
-            quadraticSum += diff*diff;
+            quadraticSum += diff * diff;
         }
-        return Math.sqrt(quadraticSum / tempSeries.length);
+        return Math.sqrt(quadraticSum / tempsSize);
     }
 
     public double min() {
