@@ -213,8 +213,8 @@ public class TemperatureSeriesAnalysis {
 
         // reformat old array
         System.arraycopy(
-                tempSeries,0,
-                newTemperatures,0,
+                tempSeries, 0,
+                newTemperatures, 0,
                 tempSeries.length
         );
 
@@ -247,8 +247,8 @@ public class TemperatureSeriesAnalysis {
         temps are greater than -273.0.
          */
         for (double temp: temps) {
-            double min_temp = -273.0;
-            if (temp < min_temp) {
+            final double MinTempValue = -273.0;
+            if (temp < MinTempValue) {
                 throw new InputMismatchException();
             }
         }
