@@ -1,5 +1,7 @@
 package ua.edu.ucu.tempseries;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
@@ -115,7 +117,7 @@ public class TemperatureSeriesAnalysis {
                 minDiff = newDiff;
             }
             // there changed because of bag
-            else if (Math.abs(newDiff - minDiff) < .0000001) {
+            else if (Math.abs(newDiff - minDiff) < 0.0000001) {
                 closest = Math.max(tempSeries[i], closest);
             }
         }
@@ -247,15 +249,21 @@ public class TemperatureSeriesAnalysis {
         temps are greater than -273.0.
          */
         for (double temp: temps) {
-            final double minTemp = -273.0;
-            if (temp < minTemp) {
+            final double Min_Temp = -273.0;
+            if (temp < Min_Temp) {
                 throw new InputMismatchException();
             }
         }
     }
 
     public double[] getTempSeries() {
-        return tempSeries;
+        double[] newArr = new double[tempsSize];
+        System.arraycopy(
+                tempSeries,
+                0, newArr,
+                0, tempsSize
+        );
+        return newArr;
     }
 
     public int getTempsSize() {
