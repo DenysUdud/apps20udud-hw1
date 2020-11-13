@@ -1,7 +1,5 @@
 package ua.edu.ucu.tempseries;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
@@ -117,7 +115,8 @@ public class TemperatureSeriesAnalysis {
                 minDiff = newDiff;
             }
             // there changed because of bag
-            else if (Math.abs(newDiff - minDiff) < 0.0000001) {
+            double delta = 0.0000001;
+            if (Math.abs(newDiff - minDiff) < delta) {
                 closest = Math.max(tempSeries[i], closest);
             }
         }
